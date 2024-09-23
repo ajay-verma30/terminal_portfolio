@@ -127,6 +127,16 @@
   opacity: 1;
 }
 
+.social-table,th,td{
+  background-color: rgb(20, 20, 20) !important;
+  border: 1px solid grey !important;
+  padding: 10px;
+}
+
+.social-table td, tr{
+  color: rgb(233, 232, 232);
+}
+
 @media screen and (min-width:700px) and (max-width:1000px) {
   .home-container{
     width: 60vw !important;

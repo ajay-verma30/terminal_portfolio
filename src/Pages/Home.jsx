@@ -23,7 +23,7 @@ function Home() {
   const handleEnterKey = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      const trimmedCommand = command.trim();
+      const trimmedCommand = command.trim().toLowerCase();
   
       if (trimmedCommand) {
         const response = commandResponses[trimmedCommand];
@@ -78,9 +78,39 @@ function Home() {
           <p className='subtext'>Social presence</p>
           <p><span className='pre-text-highlight'># user </span> in <span className='directory-highlight'> ~/ajay-verma</span></p>
           <div className='result-container'>
-    {results.map((result, index) => (
+
+          {results.map((result, index) => {
+  // Check if the result is for 'social -a'
+  if (result.includes('LinkedIn')) {
+    return (
+      <table key={index} className='social-table'>
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          {commandResponses['social -a'].map((item, i) => {
+            const [platform, link] = Object.entries(item)[0];
+            return (
+              <tr key={i}>
+                <td>{platform}</td>
+                <td><a href={link} target="_blank" rel="noreferrer">{link}</a></td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    );
+  } else {
+    return <p className='result-text' key={index}>{result}</p>;
+  }
+})}
+
+    {/* {results.map((result, index) => (
       <p className='result-text' key={index}>{result}</p>
-    ))}
+    ))} */}
   </div>
           <div className='input-container'>
             <p className='cursor'>&gt;</p>
