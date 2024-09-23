@@ -23,7 +23,7 @@ function Home() {
   const handleEnterKey = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      const trimmedCommand = command.trim();
+      const trimmedCommand = command.trim().toLowerCase();
   
       if (trimmedCommand) {
         const response = commandResponses[trimmedCommand];
